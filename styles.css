@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.calculator-container {
+    perspective: 1000px;
+}
+
+.calculator {
+    width: 320px;
+    background: linear-gradient(145deg, #f0f0f0, #d5d5d5);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 2px 5px rgba(255, 255, 255, 0.2);
+    border: 2px solid #c0c0c0;
+    position: relative;
+}
+
+.calculator::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #333, #666, #333);
+    border-radius: 17px;
+    z-index: -1;
+}
+
+/* Marca y modelo */
+.brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.casio {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    letter-spacing: 2px;
+}
+
+.model {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Pantalla */
+.display-container {
+    background: #2d3d2d;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 3px solid #1a1a1a;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.display {
+    background: #4a5a4a;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    padding: 10px 15px;
+    border-radius: 4px;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border: 1px solid #333;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-display {
+    color: #666;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    text-align: right;
+    margin-top: 5px;
+    min-height: 15px;
+}
+
+/* Grid de botones */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+}
+
+/* Estilos base de botones */
+.btn {
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones numéricos */
+.btn.number {
+    background: linear-gradient(145deg, #f8f8f8, #e0e0e0);
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+}
+
+.btn.number:hover {
+    background: linear-gradient(145deg, #ffffff, #e8e8e8);
+}
+
+/* Botón cero más ancho */
+.btn.zero {
+    grid-column: span 1;
+}
+
+/* Botones de operadores */
+.btn.operator {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #d4451f;
+}
+
+.btn.operator:hover {
+    background: linear-gradient(145deg, #ff7c4a, #f06539);
+}
+
+/* Botón igual */
+.btn.equals {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    grid-row: span 1;
+}
+
+/* Botones de función */
+.btn.function {
+    background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+    color: #333;
+    font-size: 10px;
+    border: 1px solid #bbb;
+}
+
+.btn.function:hover {
+    background: linear-gradient(145deg, #f0f0f0, #d8d8d8);
+}
+
+/* Botón ON rojo */
+.btn.red {
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    color: white;
+    border: 1px solid #bd2130;
+}
+
+.btn.red:hover {
+    background: linear-gradient(145deg, #e04556, #d12639);
+}
+
+/* Texto pequeño en botones */
+.small-text {
+    font-size: 9px;
+}
+
+.small-text small {
+    font-size: 7px;
+    color: #666;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Texto inferior */
+.bottom-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Efectos 3D adicionales */
+.calculator {
+    transform-style: preserve-3d;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .calculator {
+        width: 280px;
+        padding: 15px;
+    }
+    
+    .btn {
+        height: 35px;
+        font-size: 10px;
+    }
+    
+    .display {
+        font-size: 18px;
+    }
+}
+
+/* Animaciones */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.btn.pressed {
+    animation: buttonPress 0.1s ease;
+}
+
+/* Estados especiales */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn.active {
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    color: white;
+}
+
+/* Pantalla con parpadeo cursor */
+.display.cursor::after {
+    content: '_';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}

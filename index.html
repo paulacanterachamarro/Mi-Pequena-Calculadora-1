@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora CASIO FX-82</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <!-- Marca y modelo -->
+            <div class="brand">
+                <span class="casio">CASIO</span>
+                <span class="model">fx-82MS</span>
+            </div>
+            
+            <!-- Pantalla -->
+            <div class="display-container">
+                <div class="display" id="display">0</div>
+                <div class="secondary-display" id="secondary-display"></div>
+            </div>
+            
+            <!-- Botones -->
+            <div class="buttons-grid">
+                <!-- Primera fila -->
+                <button class="btn function" data-action="shift">SHIFT</button>
+                <button class="btn function" data-action="alpha">ALPHA</button>
+                <button class="btn function" data-action="replay">REPLAY</button>
+                <button class="btn function" data-action="mode">MODE</button>
+                <button class="btn function red" data-action="on">ON</button>
+                
+                <!-- Segunda fila -->
+                <button class="btn function small-text" data-function="2nd">2<sup>nd</sup><br><small>x²</small></button>
+                <button class="btn function small-text" data-function="ln">ln<br><small>e^x</small></button>
+                <button class="btn function small-text" data-function="log">log<br><small>10^x</small></button>
+                <button class="btn function small-text" data-function="sqrt">√<br><small>x²</small></button>
+                <button class="btn operator" data-action="clear">AC</button>
+                
+                <!-- Tercera fila -->
+                <button class="btn function small-text" data-function="sin">sin<br><small>sin⁻¹</small></button>
+                <button class="btn function small-text" data-function="cos">cos<br><small>cos⁻¹</small></button>
+                <button class="btn function small-text" data-function="tan">tan<br><small>tan⁻¹</small></button>
+                <button class="btn function small-text" data-function="deg">DEG<br><small>°'"</small></button>
+                <button class="btn operator" data-action="delete">DEL</button>
+                
+                <!-- Cuarta fila -->
+                <button class="btn function small-text" data-function="rcl">RCL<br><small>STO</small></button>
+                <button class="btn function small-text" data-function="eng">ENG<br><small>←</small></button>
+                <button class="btn function small-text" data-action="open-paren">(</button>
+                <button class="btn function small-text" data-action="close-paren">)</button>
+                <button class="btn function small-text" data-function="s-d">S⇔D<br><small>,</small></button>
+                
+                <!-- Quinta fila -->
+                <button class="btn number" data-number="7">7</button>
+                <button class="btn number" data-number="8">8</button>
+                <button class="btn number" data-number="9">9</button>
+                <button class="btn operator" data-action="delete">DEL</button>
+                <button class="btn operator" data-operator="divide">÷</button>
+                
+                <!-- Sexta fila -->
+                <button class="btn number" data-number="4">4</button>
+                <button class="btn number" data-number="5">5</button>
+                <button class="btn number" data-number="6">6</button>
+                <button class="btn operator" data-operator="multiply">×</button>
+                <button class="btn function" data-function="fraction">a<sup>b</sup>/c</button>
+                
+                <!-- Séptima fila -->
+                <button class="btn number" data-number="1">1</button>
+                <button class="btn number" data-number="2">2</button>
+                <button class="btn number" data-number="3">3</button>
+                <button class="btn operator" data-operator="plus">+</button>
+                <button class="btn function" data-function="xy">x<sup>y</sup></button>
+                
+                <!-- Octava fila -->
+                <button class="btn number zero" data-number="0">0</button>
+                <button class="btn number" data-action="decimal">.</button>
+                <button class="btn function" data-function="exp">EXP</button>
+                <button class="btn operator" data-operator="minus">-</button>
+                <button class="btn operator equals" data-action="equals">=</button>
+            </div>
+            
+            <!-- Texto inferior -->
+            <div class="bottom-text">
+                <span>NATURAL-V.P.A.M.</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
