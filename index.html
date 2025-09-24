@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora CASIO FX-82</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <!-- Marca y modelo -->
+            <div class="brand">
+                <span class="casio">CASIO</span>
+                <span class="model">fx-82MS</span>
+            </div>
+            
+            <!-- Pantalla -->
+            <div class="display-container">
+                <div class="display" id="display">0</div>
+                <div class="secondary-display" id="secondary-display"></div>
+                <div class="info-display" id="info-display">Calculadora lista</div>
+            </div>
+            
+            <!-- Botones -->
+            <div class="buttons-grid">
+                <!-- Primera fila -->
+                <button class="btn function" data-action="shift">SHIFT</button>
+                <button class="btn function" data-action="alpha">ALPHA</button>
+                <button class="btn function" data-action="replay">REPLAY</button>
+                <button class="btn function" data-action="mode">MODE</button>
+                <button class="btn function red" data-action="on">ON</button>
+                
+                <!-- Segunda fila -->
+                <button class="btn function small-text" data-function="2nd">2<sup>nd</sup><br><small>x²</small></button>
+                <button class="btn function small-text" data-function="ln">ln<br><small>e^x</small></button>
+                <button class="btn function small-text" data-function="log">log<br><small>10^x</small></button>
+                <button class="btn function small-text" data-function="sqrt">√<br><small>x²</small></button>
+                <button class="btn operator" data-action="clear">AC</button>
+                
+                <!-- Tercera fila -->
+                <button class="btn function small-text" data-function="sin">sin<br><small>sin⁻¹</small></button>
+                <button class="btn function small-text" data-function="cos">cos<br><small>cos⁻¹</small></button>
+                <button class="btn function small-text" data-function="tan">tan<br><small>tan⁻¹</small></button>
+                <button class="btn function small-text" data-function="deg">DEG<br><small>°'"</small></button>
+                <button class="btn operator" data-action="delete">DEL</button>
+                
+                <!-- Cuarta fila - Enhanced with new operations -->
+                <button class="btn function small-text" data-function="cube">x³<br><small>∛x</small></button>
+                <button class="btn function small-text" data-function="power">x^n<br><small>√n</small></button>
+                <button class="btn function small-text" data-action="open-paren">(</button>
+                <button class="btn function small-text" data-action="close-paren">)</button>
+                <button class="btn function small-text" data-function="csv">CSV<br><small>⇔</small></button>
+                
+                <!-- Quinta fila -->
+                <button class="btn number" data-number="7">7</button>
+                <button class="btn number" data-number="8">8</button>
+                <button class="btn number" data-number="9">9</button>
+                <button class="btn operator" data-action="delete">DEL</button>
+                <button class="btn operator" data-operator="divide">÷</button>
+                
+                <!-- Sexta fila -->
+                <button class="btn number" data-number="4">4</button>
+                <button class="btn number" data-number="5">5</button>
+                <button class="btn number" data-number="6">6</button>
+                <button class="btn operator" data-operator="multiply">×</button>
+                <button class="btn function" data-function="fraction">a<sup>b</sup>/c</button>
+                
+                <!-- Séptima fila -->
+                <button class="btn number" data-number="1">1</button>
+                <button class="btn number" data-number="2">2</button>
+                <button class="btn number" data-number="3">3</button>
+                <button class="btn operator" data-operator="plus">+</button>
+                <button class="btn function" data-function="xy">x<sup>y</sup></button>
+                
+                <!-- Octava fila -->
+                <button class="btn number zero" data-number="0">0</button>
+                <button class="btn number" data-action="decimal">.</button>
+                <button class="btn function" data-function="exp">EXP</button>
+                <button class="btn operator" data-operator="minus">-</button>
+                <button class="btn operator equals" data-action="equals">=</button>
+            </div>
+            
+            <!-- Texto inferior -->
+            <div class="bottom-text">
+                <span>NATURAL-V.P.A.M.</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CSV Input Modal -->
+    <div id="csv-modal" class="modal">
+        <div class="modal-content">
+            <h3>Operaciones CSV</h3>
+            <textarea id="csv-input" placeholder="Ingrese valores separados por comas (ej: 1,2,3,4,5)"></textarea>
+            <div class="csv-controls">
+                <button id="csv-sum" class="csv-btn">Suma</button>
+                <button id="csv-mean" class="csv-btn">Media</button>
+                <button id="csv-remove" class="csv-btn">Quitar último</button>
+                <button id="csv-remove-specific" class="csv-btn">Quitar específico</button>
+                <button id="csv-clear" class="csv-btn">Limpiar</button>
+                <button id="csv-close" class="csv-btn close-btn">Cerrar</button>
+            </div>
+            <div id="csv-result" class="csv-result"></div>
+        </div>
+    </div>
+    
+    <!-- Power Input Modal -->
+    <div id="power-modal" class="modal">
+        <div class="modal-content">
+            <h3>Elevar a Potencia</h3>
+            <div class="power-inputs">
+                <label>Base: <input type="number" id="power-base" step="any"></label>
+                <label>Exponente: <input type="number" id="power-exp" step="any"></label>
+            </div>
+            <div class="power-controls">
+                <button id="power-calculate" class="power-btn">Calcular</button>
+                <button id="power-close" class="power-btn close-btn">Cerrar</button>
+            </div>
+            <div id="power-result" class="power-result"></div>
+        </div>
+    </div>
+    
+    <!-- Error Log Panel -->
+    <div id="error-log-panel" class="log-panel">
+        <div class="log-header">
+            <h4>Registro de Errores</h4>
+            <button id="toggle-log" class="log-toggle">▼</button>
+        </div>
+        <div id="error-log-content" class="log-content">
+            <div id="error-log-list"></div>
+            <button id="download-log" class="download-btn">Descargar Log</button>
+            <button id="clear-log" class="clear-log-btn">Limpiar Log</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

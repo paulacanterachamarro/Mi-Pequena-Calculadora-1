@@ -1,0 +1,601 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.calculator-container {
+    perspective: 1000px;
+}
+
+.calculator {
+    width: 320px;
+    background: linear-gradient(145deg, #f0f0f0, #d5d5d5);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 2px 5px rgba(255, 255, 255, 0.2);
+    border: 2px solid #c0c0c0;
+    position: relative;
+}
+
+.calculator::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #333, #666, #333);
+    border-radius: 17px;
+    z-index: -1;
+}
+
+/* Marca y modelo */
+.brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.casio {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    letter-spacing: 2px;
+}
+
+.model {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Pantalla */
+.display-container {
+    background: #2d3d2d;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 3px solid #1a1a1a;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.display {
+    background: #4a5a4a;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    padding: 10px 15px;
+    border-radius: 4px;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border: 1px solid #333;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-display {
+    color: #666;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    text-align: right;
+    margin-top: 5px;
+    min-height: 15px;
+}
+
+/* Information display */
+.info-display {
+    background: #3a4a3a;
+    color: #90ff90;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px 8px;
+    border-radius: 3px;
+    margin-top: 8px;
+    min-height: 12px;
+    border: 1px solid #2a3a2a;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Grid de botones */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+}
+
+/* Estilos base de botones */
+.btn {
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones numéricos */
+.btn.number {
+    background: linear-gradient(145deg, #f8f8f8, #e0e0e0);
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+}
+
+.btn.number:hover {
+    background: linear-gradient(145deg, #ffffff, #e8e8e8);
+}
+
+/* Botón cero más ancho */
+.btn.zero {
+    grid-column: span 1;
+}
+
+/* Botones de operadores */
+.btn.operator {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #d4451f;
+}
+
+.btn.operator:hover {
+    background: linear-gradient(145deg, #ff7c4a, #f06539);
+}
+
+/* Botón igual */
+.btn.equals {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    grid-row: span 1;
+}
+
+/* Botones de función */
+.btn.function {
+    background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+    color: #333;
+    font-size: 10px;
+    border: 1px solid #bbb;
+}
+
+.btn.function:hover {
+    background: linear-gradient(145deg, #f0f0f0, #d8d8d8);
+}
+
+/* Botón ON rojo */
+.btn.red {
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    color: white;
+    border: 1px solid #bd2130;
+}
+
+.btn.red:hover {
+    background: linear-gradient(145deg, #e04556, #d12639);
+}
+
+/* Texto pequeño en botones */
+.small-text {
+    font-size: 9px;
+}
+
+.small-text small {
+    font-size: 7px;
+    color: #666;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Texto inferior */
+.bottom-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Efectos 3D adicionales */
+.calculator {
+    transform-style: preserve-3d;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .calculator {
+        width: 280px;
+        padding: 15px;
+    }
+    
+    .btn {
+        height: 35px;
+        font-size: 10px;
+    }
+    
+    .display {
+        font-size: 18px;
+    }
+}
+
+/* Animaciones */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.btn.pressed {
+    animation: buttonPress 0.1s ease;
+}
+
+/* Estados especiales */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn.active {
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    color: white;
+}
+
+/* Pantalla con parpadeo cursor */
+.display.cursor::after {
+    content: '_';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Enhanced button effects */
+.btn.highlighted {
+    background: linear-gradient(145deg, #ffd700, #ffcc00) !important;
+    color: #333 !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    animation: glow 0.5s ease;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    border-top-color: #90ff90;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #f0f0f0, #d5d5d5);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 2px solid #c0c0c0;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 16px;
+}
+
+/* CSV Modal specific styles */
+#csv-input {
+    width: 100%;
+    height: 80px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    resize: vertical;
+    margin-bottom: 15px;
+}
+
+.csv-controls, .power-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.csv-btn, .power-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+    color: #333;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.csv-btn:hover, .power-btn:hover {
+    background: linear-gradient(145deg, #f0f0f0, #d8d8d8);
+    transform: translateY(-1px);
+}
+
+.csv-btn.close-btn, .power-btn.close-btn {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    color: white;
+    grid-column: span 3;
+}
+
+.csv-result, .power-result {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    min-height: 30px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Power Modal specific styles */
+.power-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.power-inputs label {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+}
+
+.power-inputs input {
+    margin-top: 5px;
+    padding: 6px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Error Log Panel */
+.log-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+    border-top: 2px solid #ccc;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 500;
+    max-height: 200px;
+    transition: transform 0.3s ease;
+}
+
+.log-panel.collapsed {
+    transform: translateY(calc(100% - 40px));
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+    border-bottom: 1px solid #bbb;
+}
+
+.log-header h4 {
+    margin: 0;
+    font-size: 12px;
+    color: #333;
+}
+
+.log-toggle {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+.log-panel.collapsed .log-toggle {
+    transform: rotate(180deg);
+}
+
+.log-content {
+    padding: 10px 15px;
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+#error-log-list {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #333;
+    margin-bottom: 10px;
+    max-height: 80px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 4px;
+    background: white;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    padding: 3px;
+    border-bottom: 1px solid #eee;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-entry .timestamp {
+    color: #666;
+    font-size: 9px;
+}
+
+.log-entry .error {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.download-btn, .clear-log-btn {
+    padding: 6px 12px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.download-btn {
+    background: linear-gradient(145deg, #4caf50, #388e3c);
+    color: white;
+}
+
+.clear-log-btn {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    color: white;
+}
+
+.download-btn:hover, .clear-log-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Keyboard accessibility */
+.btn:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+.btn[tabindex="0"] {
+    cursor: pointer;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 5% auto;
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .csv-controls, .power-controls {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .csv-btn.close-btn, .power-btn.close-btn {
+        grid-column: span 2;
+    }
+    
+    .log-panel {
+        max-height: 150px;
+    }
+    
+    .power-inputs {
+        grid-template-columns: 1fr;
+    }
+}
