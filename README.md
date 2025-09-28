@@ -9,7 +9,7 @@ Réplica funcional de la calculadora científica Casio FX-82MS desarrollada con 
 - 🔗 **Calculadora online (GitHub Pages)**:  
   https://paulacanterachamarro.github.io/Mi-Pequena-Calculadora-PaulaCanteraChamarro/
   
-![Vista previa](./screenshot.png)
+![Vista previa](./Screenshot.png)
 
 
 ## ✨ Funcionalidades
