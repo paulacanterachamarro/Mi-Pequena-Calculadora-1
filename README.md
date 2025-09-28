@@ -8,6 +8,9 @@ Réplica funcional de la calculadora científica Casio FX-82MS desarrollada con 
   https://github.com/paulacanterachamarro/Mi-Pequena-Calculadora-PaulaCanteraChamarro
 - 🔗 **Calculadora online (GitHub Pages)**:  
   https://paulacanterachamarro.github.io/Mi-Pequena-Calculadora-PaulaCanteraChamarro/
+  
+![Vista previa](./screenshot.png)
+
 
 ## ✨ Funcionalidades
 - Operaciones básicas: suma, resta, multiplicación, división
