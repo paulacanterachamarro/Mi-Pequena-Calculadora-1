@@ -1,6 +1,6 @@
 # 📟 Calculadora CASIO FX-82 (Versión Web)
 
-Proyecto de **Paula Cantera Chamorro**.  
+Proyecto de **Paula Cantera ChamArro**.  
 Réplica funcional de la calculadora científica Casio FX-82MS desarrollada con **HTML, CSS y JavaScript**.
 
 ## 🚀 Enlaces
